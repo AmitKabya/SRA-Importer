@@ -48,11 +48,11 @@ if __name__ == '__main__':
     setup(
         name="SRA-Importer",
         version="0.0.1",
-        license="GPL",
+        license="MIT",
         maintainer="Amit Kabya",
         author="Amit Kabya",
         maintainer_email="kabya.amit@gmail.com",
-        url="https://github.com/AmitKabya/graph-measures",
+        url="https://github.com/AmitKabya/SRA-Importer",
         description="An easy and convenient way to import data "
                     "from the sra database and creating OTU and Taxonomy tables.",
         long_description=readme,
