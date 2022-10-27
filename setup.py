@@ -12,32 +12,32 @@ def sra_toolkit_installed():
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     o, e = proc.communicate()
-    if os.path.exists(o.decode('utf-8').strip()) and e == b'':
-        return True
-    return False
+    o, e = o.decode("utf-8"), e.decode("utf-8")
+    return os.path.exists(o.strip()) and e == ''
 
 
 def has_qiime2_conda_env():
     proc = subprocess.Popen(["conda", "env", "list"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     o, e = proc.communicate()
     o, e = o.decode("utf-8"), e.decode("utf-8")
-    qiime_version = ""
-    for env_1 in o:
-        for env_2 in env_1.split("/"):
-            if "qiime2" in env_2 and " " not in env_2:
-                qiime_version = env_2
-    return qiime_version != ""
+    return "qiime2" in o
 
 
 if __name__ == '__main__':
 
-    if not has_qiime2_conda_env():
-        raise Exception("Could not find an existing qiime2 conda environment on this machine.\n"
-                        "Download a qiime2 conda environment and then try again")
+    # check requirements on a linux + conda machine
+    # assuming that machine that uses conda is a linux machine
+    conda_prefix = os.environ.get("CONDA_PREFIX", None)
+    if conda_prefix is not None:
+        if not has_qiime2_conda_env():
+            raise Exception("Could not find an existing qiime2 conda environment on this machine.\n"
+                            "Download a qiime2 conda environment and then try again")
 
-    if not sra_toolkit_installed():
-        raise Exception("Could not find an installed sra-toolkit on this machine.\n"
-                        "Download an sra-toolkit and then try again.")
+        if not sra_toolkit_installed():
+            raise Exception("Could not find an installed sra-toolkit on this machine.\n"
+                            "Download an sra-toolkit and then try again.")
+    # continue installation on Windows just to be able to upload to pypi
+
     # get text for setup
     with open("requirements.txt") as f:
         requirements = [l.strip() for l in f.readlines()]
@@ -60,7 +60,7 @@ if __name__ == '__main__':
         keywords=["sra", "bioinformatics", "taxonomy"],
         description_file="README.md",
         license_files="LICENSE.rst",
-        install_requires=requirements,
+        install_requires=['subprocess', 'setuptools'],
         scripts=['bin/create-visualization',
                  'bin/export-data'],
         packages=find_packages('SRA-Importer'),
