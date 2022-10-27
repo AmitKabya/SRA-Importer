@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from __future__ import annotations
 
 import csv
@@ -13,7 +15,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.service import Service
 from chromedriver_py import binary_path
 
-from .utilities import run_cmd, ReadsData, qiime2_version
+from utilities import run_cmd, ReadsData, qiime2_version
 
 
 def process_input(opts):
@@ -50,7 +52,6 @@ def process_input(opts):
             output_vis_path = opts['--output-vis-path']
 
     return sra_study, acc_list, output_vis_path
-
 
 
 def download_acc_list(dir_path: str, sra_study: str):
@@ -211,3 +212,7 @@ def main_importer():
               f"Therefore, you must give the parameters '--trim' and '--trunc' of 'export.py' "
               f"exactly one integers value which is related to the forward read.\n"
               f"For example: export.py --trim 20 --trunc 200")
+
+
+if __name__ == '__main__':
+    main_importer()

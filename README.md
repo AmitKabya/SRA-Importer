@@ -17,7 +17,7 @@ The visualization purpose is to make better assessment of the range in which one
 Note: Only one of the following must be given `--sra-study`/`--acc-list`. If both are given, an error will be raised.<br>
 Usage: 
 ```
-create_vis.py --sra-study <sra-study-code> --acc-list <accession-list-file-path> --output-vis-path <final-output-path-of-visualisation>
+create_visualization --sra-study <sra-study-code> --acc-list <accession-list-file-path> --output-vis-path <final-output-path-of-visualisation>
 ```
 
 ## Export Data
@@ -38,9 +38,5 @@ If the reads are both forward and reverse 2 values should be given seperated wit
 Note: All the parameters except `--threads` must be given.<br>
 Usage: 
 ```
-export.py --output-dir <output-directory-path> --trim <trim-from> --trunc <trunc-to> --threads <number-of-threads-to-use> --otu-output-file <otu-output-file-path> --taxonomy-output-file <taxonomy-output-file-path>
+export-data --output-dir <output-directory-path> --trim <trim-from> --trunc <trunc-to> --threads <number-of-threads-to-use> --otu-output-file <otu-output-file-path> --taxonomy-output-file <taxonomy-output-file-path>
 ```
-
-## Recommended Usage
-
-First import 
