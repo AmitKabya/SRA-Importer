@@ -3,6 +3,8 @@ import subprocess
 
 from setuptools import setup, find_packages
 
+VERSION = '0.0.9'
+
 
 def sra_toolkit_installed():
     """
@@ -37,6 +39,9 @@ if __name__ == '__main__':
             raise Exception("Could not find an installed sra-toolkit on this machine.\n"
                             "Download an sra-toolkit and then try again.")
     # continue installation on Windows just to be able to upload to pypi
+    else:
+        print("Tha package can be installed and work only on CONDA environment of QIIME2.")
+        print("Working In Virtual-Environment Will Fail!!!!")
 
     # get text for setup
     with open("requirements.txt") as f:
@@ -47,7 +52,7 @@ if __name__ == '__main__':
 
     setup(
         name="SRA-Importer",
-        version="0.0.1",
+        version=VERSION,
         license="MIT",
         maintainer="Amit Kabya",
         author="Amit Kabya",
@@ -57,12 +62,10 @@ if __name__ == '__main__':
                     "from the sra database and creating OTU and Taxonomy tables.",
         long_description=readme,
         long_description_content_type="text/markdown",
-        keywords=["sra", "bioinformatics", "taxonomy"],
+        keywords=["sra", "bioinformatics", "qiime2", "taxonomy"],
         description_file="README.md",
-        license_files="LICENSE.rst",
-        install_requires=['subprocess', 'setuptools'],
-        scripts=['bin/create-visualization',
-                 'bin/export-data'],
+        license_files="LICENSE",
+        install_requires=requirements,
         packages=find_packages('SRA-Importer'),
         python_requires=">=3.6.8",
         include_package_data=True,
@@ -70,8 +73,7 @@ if __name__ == '__main__':
         package_dir={"": "SRA-Importer"},
         classifiers=[
             'Programming Language :: Python',
-            'Operating System :: Unix',
-            'Operating System :: POSIX :: Linux',
+            'License :: OSI Approved :: MIT License'
         ],
         easy_install="ok_zip"
     )
