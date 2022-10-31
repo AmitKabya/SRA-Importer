@@ -26,6 +26,8 @@ print(output_dir) # .../SRA-Importer-[creation_time]
 
 Note: This stage creates a directory. **DO NOT DELETE IT!** Its name is an input to the next stage.
 
+#### In order to decide the trim and trunc values for the next stage, drag and drop the visualization output (.qzv) to [QIIME2-VIEW](https://view.qiime2.org/)
+
 ## Export Data
 
 The second stage is in charge of creating OTU and Taxonomy tables and export them into a usable file formats.
