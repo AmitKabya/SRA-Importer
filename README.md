@@ -7,7 +7,7 @@ An easy and convenient way to import data from the sra database and creating OTU
 The package's use requires:
  - **qiime2 conda environment**: The package must run from qiime2 conda environment. 
 If one do not have a qiime2 conda environment installed, follow the instructions from [here](https://docs.qiime2.org/2022.8/install/native/) to install it.   
- - SRA Toolkit: The package also depends on SRA Toolkit. 
+ - **SRA Toolkit**: The package also depends on SRA Toolkit. 
 If one do not have a SRA Toolkit installed, follow the instructions from [here](https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit) to install it.
 Importing is divided to 2 stages:
 
