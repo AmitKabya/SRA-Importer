@@ -30,7 +30,10 @@ def download_data_from_sra(dir_path: str, acc_list: str = ""):
     return True if downloaded the data successfully, False O/W
     """
     run_cmd(["mkdir", os.path.join(dir_path, "sra")])
-    run_cmd(['prefetch', "--option-file", acc_list, "--output-directory", os.path.join(dir_path, "sra")])
+    run_cmd(['prefetch',
+             "--option-file", acc_list,
+             "--output-directory", os.path.join(dir_path, "sra"),
+             "--max-size", "u"])
 
 
 def sra_to_fastq(dir_path: str):
@@ -83,7 +86,7 @@ def qiime_import(reads_data: ReadsData):
     output_path = os.path.join(qza_path, f"demux-{'paired' if paired else 'single'}-end.qza")
     command = [
         "qiime", "tools", "import",
-        "--type", f"'SampleData[{'PairedEndSequencesWithQuality' if paired else 'SequencesWithQuality'}]'",
+        "--type", f"SampleData[{'PairedEndSequencesWithQuality' if paired else 'SequencesWithQuality'}]",
         "--input-path", f"{os.path.join(reads_data.dir_path, 'manifest.tsv')}",
         "--input-format", "PairedEndFastqManifestPhred33V2" if paired else "SingleEndFastqManifestPhred33V2",
         "--output-path", output_path

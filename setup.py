@@ -3,7 +3,7 @@ import subprocess
 
 from setuptools import setup, find_packages
 
-VERSION = '0.0.9'
+VERSION = '0.0.11'
 
 
 def sra_toolkit_installed():

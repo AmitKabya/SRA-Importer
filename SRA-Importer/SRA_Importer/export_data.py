@@ -133,7 +133,8 @@ def export_otu(reads_data: ReadsData, output_file: str):
     command = [
         "biom", "convert",
         "-i", os.path.join(reads_data.dir_path, "exports", "feature-table.biom"),
-        "-o", output_file
+        "-o", output_file,
+        "--to-tsv"
     ]
     run_cmd(command)
 
